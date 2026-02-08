@@ -1,0 +1,232 @@
+\documentclass[a4paper, 10pt]{article}
+
+\usepackage[slovene]{babel}
+\usepackage[utf8]{inputenc} %vhodno kodiranje
+\usepackage[T1]{fontenc} %izhodno kodiranje
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{xcolor}
+
+\begin{document}
+
+\newcommand{\m}{\mathcal{M}_2}
+\newcommand{\pojem}[1]{\emph{\color{purple}#1}}
+
+{\theoremstyle{plain}
+\newtheorem{izrek}{Izrek}[section]
+\newtheorem{posledica}[izrek]{Posledica}
+}
+
+{\theoremstyle{definition}
+\newtheorem{definicija}[izrek]{Definicija}
+\newtheorem{vaja}[izrek]{Vaja}
+}
+
+
+\newenvironment{magic}[3]{ %novo okolje
+   \begin{table}[!ht]
+      \centering
+      \large
+      \caption{#2}
+      \label{#3}
+      \begin{tabular}{|*{#1}{c|}} \hline
+}
+{
+   \end{tabular}
+   \end{table}
+}
+
+
+\title{Izdelava urnikov}
+\author{}
+\date{}
+
+\maketitle %da se glava izpiše
+
+
+% POVZETEK
+\begin{abstract}
+   V članku ...
+\end{abstract}
+
+\tableofcontents %KAZALO
+
+\begin{magic}{3}{Začetek magičnega kvadrata}{table:mag3} %uporaba novega okolja
+   8 & 1 & 6 \\\hline
+   3 & 5 & 7 \\\hline
+   4 & 9 & 2 \\\hline
+\end{magic}
+
+\begin{table}
+   \centering
+   \caption{Kvadrat Lo Shu}
+   \large
+   \label{table:loshu}
+   \begin{tabular}{|c|c|c|} \hline
+      4 & 9 & 2 \\\hline
+      3 & 5 & 7 \\\hline
+      8 & 1 & 6 \\\hline
+   \end{tabular}
+\end{table}
+
+\begin{table}[!ht]
+   \centering
+   \caption{Število različnih normalnih magičnih kvadratov}
+   \label{table:stevila}
+   \begin{tabular}{lcccccc} \toprule
+         & \multicolumn{5}{c}{točna vrednost} &približek \\ \midrule
+         red &1 &2 &3 &4 &5 &6\\
+         število kvadratov &1 &0 &1 &880 &275305224 & $(1,7745 \pm 0,0016)10^{19}$ \\ \bottomrule
+   \end{tabular}
+\end{table}
+
+\section{Program za izdelavo urnika} %razdelek
+
+Spominjam se ...
+
+\subsection{Vhodni podatki} % podrazdelek
+
+Če želimo izdelati urnik...
+
+% ohranja poravnavo, vrstice, odstavke, tako kot je napisano
+\begin{verbatim} 
+   <profesor>
+      <ime>Janez</ime>
+      <priimek>Novak</priimek>
+      <predmet>
+         <imePredmeta>matematika</imePredmeta>
+         <steviloUrNaTeden>3</steviloUrNaTeden>
+      </predmet>
+   </profesor>
+\end{verbatim}
+% konec okolja verbatim
+
+\noindent
+Hierarhija značk...
+
+%NEOŠTEVILČEN SEZNAM
+\begin{itemize} 
+   \item Razred \emph{Profesor} vsebuje...
+   \item Razred \emph{Skupina} predstavlja...
+\end{itemize}
+% \emph{neki} pomeni LEŽEČE
+
+Naslednji izračun nam poda velikost tabele:
+$$\text{velikostTabele} = \text{številoUrNaDan} \cdot \text{številoDelovnihDni}$$
+Če bi predpostavili...
+
+
+\texttt{true} predstavljala %koda na tipkalnem stroju
+dosegljivost, \texttt{false} pa zasedenost.
+
+
+%OŠTEVILČEN SEZNAM
+\begin{enumerate}
+   
+   \item Z zanko se sprehodimo po vektorju vseh predmetov. Predmet na $i$--tem koraku
+   označimo s \(\text{predmet}_i\).
+
+   \item Naslednja vgnezdena zanka nas popelje po vseh predavalnicah. Predavalnico na
+   $j$--tem koraku označimo s $\text{predavalnica}_j$.
+
+\end{enumerate}
+
+... vmesnik (\underline{G}raphical \underline{U}ser \underline{I}nterface), ki mora urnik... %podčrta
+
+\begin{center} %na sredini
+   %\includegraphics{slika.pdf} %vključi sliko
+\end{center}
+
+\newpage %nova stran
+
+\begin{itemize}
+   \item \url{http://mathworld.wolfram.com/MagicSquare.html} %url link
+   \item \url{http://en.wikipedia.org/wiki/Magic_square}
+\end{itemize}
+
+\begin{definicija}
+   Magični kvadrat reda $n$ je \pojem{normalen}, če v njem nastopajo števila
+   \begin{equation}
+      \label{eq:numbers}
+      % oznaka: eq:numbers
+      1, 2, 3, \ldots, n^2-1, n^2.
+   \end{equation}
+\end{definicija}
+
+...števil (glej \eqref{eq:numbers} na strani \pageref{eq:numbers}) ...
+%lahko se sklicujemo na labels
+
+VKLJUČITEV SLIK
+% \begin{figure}[!ht]
+%    \centering
+%    \caption{Dürerjev magični kvadrat}
+%    \label{fig:durer}
+%    \includegraphics[scale=1.5]{durer.png}
+% \end{figure}
+
+\(\cdot\) %central dot
+\(\ldots\) %tri pike
+\(k_1\) %napisano odspodi
+\(\text{predmet}_i\) %besedilo zraven
+
+%VSTAVIMO BIBLIOGRAFIJO
+\bibliographystyle{siam}
+% \bibliography{ime_datoteke.bib}
+% \ref{table:mag3} , \cite{euler}
+% \nocite{neki} - VKLJUČENO V BIBLIOGRAFIJI, tudi če ni citirano
+
+\end{document}
+
+
+% PAKETI:
+% amsmath - delaš matematiko, \text{}
+% amssymb - logični simboli, \mathbb{R}, \mathbb{N}
+% amsthm - izreki (theorem),leme (lemma), dokazi (proof)
+% hyperref - \ref, \cite, link
+% booktabs - tabele, \toprule, \midrule, \bottomrule
+% graphicx - slike
+% tikz - diagrami, grafi, skice
+% pgfplots - grafi funkcij
+% xcolor - barve
+
+
+% OBLIKOVANJE BESEDILA: 
+% \emph - ležeče
+% \textbf - krepko
+% \textit - italic
+% \texttt - pisalni stroj
+% \verb
+% \url - link
+% \noindent - začne čisto levo
+% \centering - poravnava v tabeli
+% center - okolje poravnano na sredini
+% verbatim - ohrani presledke in vrstice
+
+
+% TABELE:
+% table, tabular
+% \hline - vodoravna črta
+% \toprule, \midrule, \bottomrule - vodoravne črte
+% \multicolumn - ena stvar se razteza čez več stolpcev
+
+
+% dodatne datoteke: \input,
+
+
+
+
+
+
+% stolpce columns z okolji column ali ukazi \column.
+
+
+% simbole: iz tabele matematičnih simbolov,
+% posebne prikaze: \frac, \sqrt, \binom, cases, matrike,
+% vgrajene funkcije: \sin, \cos, \log, \lim, … (predvsem, da ne napišete samo sin),
+% prikazna okolja: equation, align in multline (variante z * in brez),
+% pisave: \mathsf, \mathtt, mathrm, \mathbb, \mathcal,
+% vstavljanje besedila: \text.
+% Pazite, da boste uporabljali ustrezne simbole (npr. \emptyset in ne \phi za prazno množico ali pa \in in ne \epsilon za element).

@@ -1,0 +1,220 @@
+\documentclass{beamer}
+
+
+\usepackage{tikz}
+\usetikzlibrary{math}
+
+\usepackage{pgfplots}
+\usepgfplotslibrary{external}
+
+\usepackage{array}
+
+\pgfplotsset{compat=1.18}
+
+{\theoremstyle{plain}
+\newtheorem{izrek}{Izrek}[section]
+\newtheorem{posledica}[izrek]{Posledica}
+}
+
+{\theoremstyle{definition}
+\newtheorem{definicija}[izrek]{Definicija}
+\newtheorem{vaja}[izrek]{Vaja}
+}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\begin{document}
+
+\title{Matematični izrazi in uporaba paketa \texttt{beamer}}
+\subtitle{\emph{Matematičnih} nalog ni treba reševati!}
+\institute{Fakulteta za matematiko in fiziko}
+\date{}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+
+%KAZALO VSEBINE
+\begin{frame}
+    \frametitle{Kratek pregled}
+    \tableofcontents%[pausesections]
+\end{frame}
+
+% \section{Paket \texttt{beamer}}
+% \input{prosojnice/1-paket-beamer.tex}
+
+% \section{Paketa \texttt{amsmath} in \texttt{amsfonts}}
+% \input{prosojnice/2-paketa-amsmath-amsfonts.tex}
+
+%  NASLOV PROSOJNICE
+\begin{frame}{Posebnosti prosojnic}
+
+	Za prosojnice je značilna uporaba okolja \texttt{frame},
+	s katerim definiramo posamezno prosojnico,
+	\pause %POSTOPNO ODKRIVANJE
+	postopno odkrivanje prosojnic,
+	\pause
+	ter nekateri drugi ukazi, ki jih najdemo v paketu \texttt{beamer}.
+	\pause
+	\begin{exampleblock}{Primer} %PRIMER BLOK
+		Verjetno ste že opazili, da za naslovno prosojnico niste uporabili
+		ukaza \texttt{maketitle}, ampak ukaz \texttt{titlepage}.
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}{Poudarjeni bloki}
+		\begin{block}{Opomba} %OPOMBA
+			Okolja za poudarjene bloke ...
+		\end{block}
+
+		\begin{alertblock}{Pozor!} %OPOZORILO
+			Začetek poudarjenega bloka...
+		\end{alertblock}
+\end{frame}
+
+\begin{frame}{Tudi v predstavitvah lahko pišemo izreke in dokaze}
+	% Naloga 2.3.2:
+	% Oblikujte okolje itemize, tako da se bo njegova vsebina postopoma odkrivala.
+	% Ne smete uporabiti ukaza `pause'.
+	% Beseda `največje' naj bo poudarjena šele na četrti podprosojnici.
+
+	\begin{izrek}
+	   Praštevil je neskončno mnogo.
+	\end{izrek}
+	\begin{proof}
+	   Denimo, da je praštevil končno mnogo.
+        % POSTOPNO ODKRIVANJE
+	   \begin{itemize}[<+->]
+		  \item Naj bo $p$ \alert<4>{največje} praštevilo. 
+		  \item Naj bo $q$ produkt števil $1$, $2$, \ldots, $p$.
+		  \item Število $q+1$ ni deljivo z nobenim praštevilom, torej je $q+1$ praštevilo.
+		  \item To je protislovje, saj je $q+1>p$. \qedhere
+	   \end{itemize}
+	\end{proof}
+ \end{frame}
+
+ \begin{frame}{Matrike}
+	
+	V pomoč naj vam bo Overleaf dokumentacija o matrikah: %VSE MATRIKE
+	https://www.overleaf.com/learn/latex/Matrices
+
+\end{frame}
+
+\begin{frame}{Okolje \texttt{align} in \texttt{align*}}
+	% align - OŠTEVILČENO
+    % align* - NEOŠTEVILČENO
+
+    % \only - samo na enem mestu
+    % \onslide - NA VEČIH MESTIH
+	
+	\begin{align*}
+		(a+b)^n \only{= \ldots }<1>
+		\onslide<2-3>{&= (a+b) (a+b) \dots (a+b)} \\
+		\onslide<3> {&= a^n + n a^{n-1} b + \dots + \binom{n}{k} a^{n-k} b^k + \dots + n a b^{n-1} + b^n} \\
+		&= \sum_{k=0}^n \binom{n}{k} a^{n-k} b^k \\
+	\end{align*}
+	
+\end{frame}
+
+
+\begin{frame}{Okolje \texttt{multline}}
+	% multline - tak douga enačba da je čez več vrstic
+	Poišči vse rešitve enačbe
+	\begin{multline*}
+	(1+x+x^2) \cdot (1+x+x^2+x^3+\ldots+x^9+x^{10}) = \\
+	=(1+x+x^2+x^3+x^4+x^5+x^6)^2.
+	\end{multline*}
+\end{frame}
+
+\begin{frame}{Okolje \texttt{cases}}
+	% cases - ZLEPLJENKA
+	Dana je funkcija
+	\[ f(x,y)=
+		\begin{cases}
+			\frac{3x^2y-y^3}{x^2+y^2} ; &(x,y)\neq(0,0),\\
+			a; &(x,y)=(0,0).
+		\end{cases}
+	\]
+		
+	\begin{itemize}
+		% displaystyle - PRIKAZNI NAČIN, kao lepše
+	\item Določi $a$, tako da izračunaš limito \(\displaystyle\lim_{(x,y)\to(0,0)} f(x). \)
+	\item Izračunaj parcialna odvoda $\displaystyle f_x(x,y)$ in $f_y(x,y)$.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Konstrukcija pravokotnice na premico $p$ skozi točko $T$}
+
+	\begin{minipage}{0.55\textwidth} %minipage al neki
+		  \begin{itemize}
+			 \onslide<1->{\item Dani sta premica $p$ in točka $T$.}
+			 \onslide<2->{\item Nariši lok $k$ s središčem v $T$.}
+			 \onslide<3->{\item Premico $p$ seče v točkah $A$ in $B$.}
+			 \onslide<4->{\item Nariši lok $m$ s središčem v $A$.}
+			 \onslide<5->{\item Nariši lok $n$ s središčem v $B$ in z enakim polmerom.}
+			 \onslide<6->{\item Loka se sečeta v točki $C$.}
+			 \onslide<7->{\item Premica skozi točki $T$ in $C$ je pravokotna na $p$.}
+		  \end{itemize}
+	\end{minipage}\hfill %da se raztegne levo in desno
+	\begin{minipage}{0.45\textwidth}
+		\centering
+			% \only<1>{\includegraphics[width=50mm]{slike/fig-1.png}}
+			% \only<2>{\includegraphics[width=50mm]{slike/fig-2.png}}
+			% \only<3>{\includegraphics[width=50mm]{slike/fig-3.png}}
+			% \only<4>{\includegraphics[width=50mm]{slike/fig-4.png}}
+			% \only<5>{\includegraphics[width=50mm]{slike/fig-5.png}}
+			% \only<6>{\includegraphics[width=50mm]{slike/fig-6.png}}
+			% \only<7>{\includegraphics[width=50mm]{slike/fig-7.png}}
+	\end{minipage}
+
+\end{frame}
+
+\begin{frame}{Odkrivanje tabele po vrsticah}
+	Včasih pride prav, da tabelo odkrivamo postopoma po vrsticah.
+	\begin{center}
+		\begin{tabular}{c|cccc}
+		   Oznaka & A & B & C & D \\ \hline
+		   \pause
+		   X & 1 & 2 & 3 & 4 \\
+		   \pause
+		   Y & 3 & 4 & 5 & 6 \\
+		   \pause
+		   Z & 5 & 6 & 7 & 8
+		\end{tabular}
+	\end{center}
+\end{frame}
+ 
+
+\begin{frame}{Odkrivanje tabele po stolpcih}
+	Tabelo lahko odkrivamo tudi po stolpcih, čeprav ni najlažje.
+
+	\begin{center}
+		\begin{tabular}{c|>{\onslide<2->}c>{\onslide<3->}c>{\onslide<4->}c>{\onslide<5->}c<{\onslide}}
+		   Oznaka & A & B & C & D \\ \hline
+		   X & 1 & 2 & 3 & 4 \\
+		   Y & 3 & 4 & 5 & 6 \\
+		   Z & 5 & 6 & 7 & 8
+		\end{tabular}
+	\end{center}
+\end{frame}
+
+
+\begin{frame}{Odkrivanje tabele po stolpcih}  %STOLPCI AL NEKI
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            LEVI STOLPEC
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            DESNI STOLPEC
+        \end{column}
+    \end{columns}
+
+\end{frame}
+
+
+
+\end{document}

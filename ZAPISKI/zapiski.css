@@ -1,0 +1,56 @@
+h1 {
+    color: rgb(202, 12, 126)
+    }
+
+h2 {
+    margin-top: 2em; 
+    border-top: 1px #AAAAAA solid; /* širina, barva, stil - vse našteto */
+    padding: 0.5em;
+     }
+
+#uvod {
+    padding: 2em;
+    background-color: rgb(51, 0, 102, 0.1);
+    }
+
+.slika {
+    font-size: 0.9em;
+    width: 40%;
+    text-align: left;
+    float: right; /* besedilo oblije sliko */
+    margin-left: 2em;
+     }
+
+.slika img {
+    width: 100%;
+    height: auto;
+     border-radius: 50%;
+     }
+
+.slika p:last-child { /* zadnji p v danem classu v divisionu */
+    font-size: 0.8em;
+    margin-top: -10px;
+     }
+
+a::before { /* pred vsemi a-ji se izpiše */
+    content: "💕🌸🎀🩰🌷";
+     }
+/*
+zunanji prazen prostor (zunanji rob): angl. margin,
+notranji prazen prostor (notranji rob): angl. padding,
+obroba oz. rob: angl. border,
+višina: angl. height,
+širina: angl. width.
+*/
+
+/*
+
+KAKO KLICATI:
+⟨znacka⟩
+[⟨atribut⟩]
+[⟨atribut⟩=⟨vrednost⟩]
+.⟨razred⟩
+#⟨id-elementa⟩
+* izbere vse
+
+*/
